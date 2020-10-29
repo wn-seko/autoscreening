@@ -13,11 +13,11 @@ def train(file_dir_path, master_file_path, model_name):
     file_paths = glob.glob(f'{file_dir_path}/*.xlsx')
 
     # マスターファイルから列生成
-    df = read_xlsx_to_empty_dataframe(master_file_path, 'シート1', skip_rows=2)
+    df = read_xlsx_to_empty_dataframe(master_file_path, 'シート1', skip_rows=1, use_score=True)
 
     # ファイルを読み込んでデータフレームに変換
     for file_path in file_paths:
-        df = df.append(read_xlsx_to_dataframe(file_path, 'シート1', score_sheet_name='シート2', skip_rows=2))
+        df = df.append(read_xlsx_to_dataframe(file_path, 'シート1', score_sheet_name='シート3', skip_rows=1))
 
     # スコアデータ分離
     scores = df['score']
